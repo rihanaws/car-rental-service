@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Bilingual (Bangla / English) marketing and booking website for a car rental business in Dhaka, Bangladesh. Next.js App Router + TypeScript + Tailwind v4. No auth or payments are wired in yet (see Integration points below).
+Bilingual (Bangla / English) marketing and booking website for a car rental business in Dhaka, Bangladesh. Next.js 16 (App Router) + TypeScript + Tailwind v4. No auth or payments are wired in yet (see Integration points below).
 
 **Bun only** — never npm/yarn/pnpm.
 
@@ -15,11 +15,12 @@ bun install
 bun run dev      # http://localhost:3000
 bun run build
 bun run start    # production server, after build
-bun run lint
 bun test         # bun:test (built-in runner, no Jest/Vitest)
 ```
 
 Run a single test file: `bun test __tests__/validation.test.ts`
+
+**Lint**: `bun run lint` (`next lint`) does not work — Next.js 16 removed the built-in `next lint` command and this repo has no ESLint config/dependency installed. Wire up `eslint` + `eslint-config-next` before relying on this script.
 
 ## Architecture
 

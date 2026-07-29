@@ -1,7 +1,7 @@
 # Dhaka Car Rental
 
 A bilingual (Bangla / English) marketing and booking website for a car rental
-business operating in Dhaka, Bangladesh. Built with Next.js App Router,
+business operating in Dhaka, Bangladesh. Built with Next.js 16 (App Router),
 TypeScript, and Tailwind CSS v4.
 
 This project uses **Bun** exclusively. Do not use npm, yarn, or pnpm.
@@ -38,9 +38,9 @@ bun run start
 
 ## Lint
 
-```bash
-bun run lint
-```
+`bun run lint` (`next lint`) currently does not work: Next.js 16 removed the
+built-in `next lint` command, and this project has no ESLint config or
+dependency installed. Add `eslint` + `eslint-config-next` to enable it.
 
 ## Tests
 
