@@ -1,0 +1,166 @@
+/* ==========================================================================
+   DHAKA CAR RENTAL — DESIGN SYSTEM
+   ==========================================================================
+
+   PALETTE
+   -------
+   --color-background   #14231C  deep charcoal-green   (page background, dark sections)
+   --color-surface       #F6F1E7  warm off-white paper  (cards, panels, light sections)
+   --color-primary       #C4622D  burnt terracotta      (primary CTAs, key accents)
+   --color-accent        #B99342  deep gold              (secondary accents, highlights)
+   --color-success        #2F5233  forest green           (success states, confirmations)
+   --color-warning        #D98C2B  amber                  (warnings, notices)
+   --color-text           #1B1B18  ink                    (text on light surfaces)
+   --color-text-inverse   #F2EDE1  warm paper white       (text on dark backgrounds)
+
+   TYPOGRAPHY
+   ----------
+   English headings : "Fraunces"      (warm, irregular serif — via next/font/google)
+   English body/UI   : "Sora"          (via next/font/google)
+   Bangla headings   : "Tiro Bangla"   (via next/font/google)
+   Bangla body/UI    : "Hind Siliguri" (via next/font/google)
+   Active pair is switched by a `data-lang` attribute on <html>, driving which
+   CSS variable pair (--font-heading / --font-body) resolves.
+
+   RADIUS
+   ------
+   2px   buttons, form inputs, chips        — sharp, confident, not bubbly
+   12px  photo / media cards only
+
+   SHADOWS
+   -------
+   No default drop shadows. Primary CTAs and card containers use a single
+   hard offset ink shadow: 4px 4px 0 var(--color-text), shifting on
+   hover/active (2px 2px 0, translate) for a tactile press effect.
+
+   MOTION
+   ------
+   150ms ease-out transitions on hover/focus only. No scroll-jacking, no
+   parallax, no auto-playing carousels.
+
+   LAYOUT
+   ------
+   Mobile-first (360–414px baseline): stacked sections, 44px+ tap targets,
+   sticky bottom "Book" CTA bar on Home/Fleet/Services/Booking (mobile only).
+   Tablet/desktop: multi-column hero, side-by-side booking widget, denser
+   fleet grid (3–4 cols).
+   ========================================================================== */
+
+@import "tailwindcss";
+
+@theme {
+  --color-background: #14231c;
+  --color-surface: #f6f1e7;
+  --color-primary: #c4622d;
+  --color-accent: #b99342;
+  --color-success: #2f5233;
+  --color-warning: #d98c2b;
+  --color-text: #1b1b18;
+  --color-text-inverse: #f2ede1;
+
+  --radius-sharp: 2px;
+  --radius-media: 12px;
+
+  --shadow-hard: 4px 4px 0 #1b1b18;
+  --shadow-hard-sm: 2px 2px 0 #1b1b18;
+
+  --font-heading-en: var(--font-fraunces), Georgia, serif;
+  --font-body-en: var(--font-sora), system-ui, sans-serif;
+  --font-heading-bn: var(--font-tiro-bangla), Georgia, serif;
+  --font-body-bn: var(--font-hind-siliguri), system-ui, sans-serif;
+}
+
+:root {
+  --font-heading: var(--font-heading-bn);
+  --font-body: var(--font-body-bn);
+}
+
+html[data-lang="en"] {
+  --font-heading: var(--font-heading-en);
+  --font-body: var(--font-body-en);
+}
+
+html[data-lang="bn"] {
+  --font-heading: var(--font-heading-bn);
+  --font-body: var(--font-body-bn);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-inverse);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Shared hard-shadow interactive components */
+.btn-hard {
+  box-shadow: var(--shadow-hard);
+  transition:
+    transform 150ms ease-out,
+    box-shadow 150ms ease-out,
+    background-color 150ms ease-out;
+}
+
+.btn-hard:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--color-text);
+}
+
+.btn-hard:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.card-hard {
+  box-shadow: var(--shadow-hard);
+}
+
+/* Sticky bottom booking CTA — mobile only */
+.sticky-book-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+}
+
+@media (min-width: 768px) {
+  .sticky-book-bar {
+    display: none;
+  }
+}

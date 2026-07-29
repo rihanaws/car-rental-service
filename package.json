@@ -1,0 +1,26 @@
+{
+  "name": "dhaka-car-rental",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "next": "15.1.6",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "devDependencies": {
+    "typescript": "5.7.3",
+    "@types/react": "19.0.8",
+    "@types/node": "22.10.10",
+    "@types/react-dom": "19.0.3",
+    "tailwindcss": "^4.1.0",
+    "@tailwindcss/postcss": "^4.1.0",
+    "postcss": "8.5.1"
+  }
+}
